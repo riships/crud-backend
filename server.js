@@ -7,5 +7,5 @@ const { connectDB } = require('./config/db');
 // Connect to the database
 connectDB();
 
-const PORT = config.port || 5000;
+const PORT = config.port;
 app.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));
