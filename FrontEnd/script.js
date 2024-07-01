@@ -16,16 +16,20 @@ function getDataById(userId) {
         dataType: 'json'  // Specify the expected response format
     });
 
+
+
+
     // Success callback
     request.done(function (response) {
-        console.log(response);
+        // console.log(response);
         response = response.userData;
         let tableData = '';
-
-        // Iterate over the response array to generate table rows
-        response.forEach(userElement => {
-            let { _id, first_name, last_name, email, gender, address, mobile_number } = userElement;
-            tableData += `
+        let tableDataBody = document.getElementById('tableDataBody');
+        if (tableDataBody) {
+            // Iterate over the response array to generate table rows
+            response.forEach(userElement => {
+                let { _id, first_name, last_name, email, gender, address, mobile_number } = userElement;
+                tableData += `
                 <tr onclick="getDataById('${_id}')">
                     <td>${first_name}</td>
                     <td>${last_name}</td>
@@ -36,11 +40,16 @@ function getDataById(userId) {
                     <td></td>
                 </tr>
             `;
-        });
+            });
+            tableDataBody.innerHTML = tableData;
+        }
+
 
         // Update the table body with the generated rows
-        document.getElementById('tableDataBody').innerHTML = tableData;
+
     });
+
+
 
     // Error callback
     request.fail(function (jqXHR, textStatus, errorThrown) {
@@ -48,3 +57,14 @@ function getDataById(userId) {
     });
 }
 getDataById();
+
+
+
+document.getElementById('submit_form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    let formData = new FormData(this);
+
+    console.log(formData);
+
+
+})

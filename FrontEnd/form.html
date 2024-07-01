@@ -10,7 +10,7 @@
 
 <body>
 
-    <form action="/submit_form" method="POST">
+    <form id="submit_form">
         <label for="first_name">First Name:</label><br>
         <input type="text" id="first_name" name="first_name" required><br>
 
@@ -32,11 +32,12 @@
         </select><br>
 
         <label for="address">Address:</label><br>
-        <textarea id="address" name="address" rows="4" required></textarea><br>      
+        <textarea id="address" name="address" rows="4" required></textarea><br>
 
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" >
     </form>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
