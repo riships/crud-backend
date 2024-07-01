@@ -63,7 +63,6 @@ getDataById();
 document.getElementById('submit_form').addEventListener('submit', (e) => {
     e.preventDefault();
     let formData = new FormData(this);
-
     console.log(formData);
 
 
