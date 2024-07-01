@@ -1,15 +1,48 @@
 body {
     margin: 0;
-    padding: 0;
+    padding: 20px;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     font-family: Tahoma;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttonSection{
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button[type="button"]:nth-child(1) {
+    background-color: #4CAF50;
+    /* Green */
+    color: white;
+}
+
+button[type="button"]:nth-child(2) {
+    background-color: #008CBA;
+    /* Blue */
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8;
 }
 
 .tableData {
     width: 80%;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 table {
