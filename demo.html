@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Common-Breadcrum</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .common-breadcrum {
+            display: flex;
+            justify-content: flex-start;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .common-breadcrum>li {
+            position: relative;
+            padding-left: 15px;
+            font-size: 20px;
+        }
+
+        .common-breadcrum>li>a {
+            text-decoration: none;
+        }
+
+        .common-breadcrum>li:not(:last-child) {
+            color: #3E85F0;
+        }
+
+        .common-breadcrum>li:not(:first-child)::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: black;
+            font-size: 20px;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="common-breadcrum">
+        <li><a href="#">content1</a></li>
+        <li>content3</li>
+    </ul>
+</body>
+
+</html>

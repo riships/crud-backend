@@ -1,7 +1,8 @@
 // controllers/userController.js
-
 const User = require('../models/userModel');
 
+
+/* Get data of all users */
 const getAllUsers = async (req, res) => {
     try {
         const users = await User.find();
@@ -12,6 +13,8 @@ const getAllUsers = async (req, res) => {
     }
 };
 
+
+/* Get data of a user by id*/
 const getUserById = async (req, res) => {
     try {
         const users = await User.findById(req.params.id);
@@ -23,6 +26,8 @@ const getUserById = async (req, res) => {
 };
 
 
+
+/* Store data of a user */
 const storeUserData = async (req, res) => {
     try {
         const newUser = new User(req.body);
@@ -40,8 +45,21 @@ const storeUserData = async (req, res) => {
     }
 }
 
+
+/* Delete data of a user by id */
+const deleteUserData = async (req, res) => {
+    try {
+        const users = await User.deleteOne({ _id: req.params.id });
+        res.status(200).json({ message: 'User data Deleted successfully' });
+    } catch (err) {
+        console.error('Error fetching users:', err.message);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
-    storeUserData
+    storeUserData,
+    deleteUserData
 };

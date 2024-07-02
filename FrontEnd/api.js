@@ -30,14 +30,14 @@ function getDataById(userId) {
             response.forEach(userElement => {
                 let { _id, first_name, last_name, email, gender, address, mobile_number } = userElement;
                 tableData += `
-                <tr onclick="getDataById('${_id}')">
-                    <td>${first_name}</td>
+                <tr>
+                    <td onclick="getDataById('${_id}')">${first_name}</td>
                     <td>${last_name}</td>
                     <td>${email}</td>
                     <td>${gender}</td>
                     <td>${address}</td>
                     <td>${mobile_number}</td>
-                    <td></td>
+                    <td><input type='button' onclick="deleteOneUser('${_id}')" value="Delete"></td>
                 </tr>
             `;
             });
@@ -56,9 +56,18 @@ function getDataById(userId) {
 getDataById();
 
 
+
+
+
 $('#submit_form').on('submit', function (e) {
     e.preventDefault();
     let form = this; // Since 'this' refers to the form element in the event handler
+
+    let timeStamp = new Date().getTime();
+
+    $("#userId").val(timeStamp)
+
+    // console.log(timeStamp);
 
     let formData = new FormData(form);
 
@@ -66,7 +75,7 @@ $('#submit_form').on('submit', function (e) {
     formData.forEach((value, key) => {
         formObject[key] = value;
     });
-    console.log(formObject);
+    // console.log(formObject);
 
 
     let url = `http://localhost:3000/api/users/submit_form`;
@@ -84,6 +93,7 @@ $('#submit_form').on('submit', function (e) {
     request.done(function (response) {
         console.log('Form data submitted successfully:', response);
         // Optionally, update UI or perform actions after successful submission
+        $('#submit_form')[0].reset  ()
     });
 
     request.fail(function (jqXHR, textStatus, errorThrown) {
@@ -93,4 +103,27 @@ $('#submit_form').on('submit', function (e) {
 
 
 
+// delete data with user id 
 
+function deleteOneUser(id) {
+   
+    let url = `http://localhost:3000/api/users/deleteUser/${id}`;
+    $.ajax({
+        url: url,
+        type: 'DELETE',
+        contentType: 'application/json',
+        dataType: 'json',
+        crossDomain: true,
+        cache: false,
+        success: function (response) {
+            console.log('User data deleted successfully:', response);
+            // Optionally, update UI or perform actions after successful deletion
+            $('#submit_form')[0].reset();
+            getDataById();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.error("Request failed: " + textStatus + ", " + errorThrown);
+        }
+    });
+    
+}
