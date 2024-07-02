@@ -17,7 +17,8 @@ const getAllUsers = async (req, res) => {
 /* Get data of a user by id*/
 const getUserById = async (req, res) => {
     try {
-        const users = await User.findById(req.params.id);
+        let userId = req.params.userId
+        const users = await User.findById(userId);
         res.json({ "userData": [users] });
     } catch (err) {
         console.error('Error fetching users:', err.message);

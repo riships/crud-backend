@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-}, { collection: 'usersdatas' });
+}, { collection: 'usersdatas', versionKey: false });
 
 const User = mongoose.model('usersdata', userSchema);
 

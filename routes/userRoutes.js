@@ -7,7 +7,7 @@ const { getAllUsers, getUserById, storeUserData, deleteUserData } = require('../
 router.get('/', getAllUsers);
 
 
-router.get('/:id', getUserById);
+router.get('/getUser', getUserById);
 
 
 router.post('/submit_form', storeUserData);
