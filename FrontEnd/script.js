@@ -14,8 +14,18 @@ signUpBtn.click(function (e) {
 
 tableBtn.click(function (e) {
     e.preventDefault();
+    getDataById();
     signUpForm.css("display", "none");
     dataTable.css("display", "block");
     signUpBtn.css("display", "block");
     tableBtn.css("display", "none")
+    
 });
+
+function editBtnFuntion() {
+    // console.log("edit btn clicked");
+    signUpForm.css("display", "block");
+    dataTable.css("display", "none");
+    signUpBtn.css("display", "none");
+    tableBtn.css("display", "block")
+};

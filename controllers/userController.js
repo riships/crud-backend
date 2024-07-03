@@ -17,7 +17,8 @@ const getAllUsers = async (req, res) => {
 /* Get data of a user by id*/
 const getUserById = async (req, res) => {
     try {
-        let userId = req.params.userId
+        let userId = req.query.userId
+        // console.log(req.query);
         const users = await User.findById(userId);
         res.json({ "userData": [users] });
     } catch (err) {
@@ -58,9 +59,27 @@ const deleteUserData = async (req, res) => {
     }
 }
 
+const updateUserData = async (req, res) => {
+    try {
+        const userId = req.params.id;
+        const updatedData = req.body;
+
+        const result = await User.findByIdAndUpdate(userId, updatedData,{new:true})
+
+        if (!result) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.status(200).json({ message: 'User data updated successfully'});
+    } catch (err) {
+        console.error('Error updating user data:', err.message);
+        res.status(500).json({ message: 'Server error' });
+    }
+}
+
 module.exports = {
     getAllUsers,
     getUserById,
     storeUserData,
-    deleteUserData
+    deleteUserData, 
+    updateUserData
 };
