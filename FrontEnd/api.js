@@ -67,6 +67,8 @@ $('#submit_form').on('submit', function (e) {
     // console.log(typeof userId);
     if (userId === null || userId === undefined || userId == '') {
         let timeStamp = new Date().getTime(); // Generate a unique timestamp
+        timeStamp = toString(timeStamp)
+        console.log(typeof timeStamp);
         $("#userId").val(timeStamp); // Set the timestamp as the userId
     }
     
