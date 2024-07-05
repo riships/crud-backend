@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     first_name: {
         type: String,
         required: true
     },
     last_name: {
-        type: String,
-        required: false
+        type: String
     },
     email: {
         type: String,
@@ -27,8 +25,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-}, { collection: 'usersdatas', versionKey: false });
+}, {
+    collection: 'users', // Updated collection name
+    versionKey: false
+});
 
-const User = mongoose.model('usersdata', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
