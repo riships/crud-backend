@@ -74,7 +74,9 @@ $('#submit_form').on('submit', function (e) {
 
     // Convert FormData to a plain object
     formData.forEach((value, key) => {
-        formObject[key] = value;
+        if (key != '_id') {
+            formObject[key] = value;
+        }
     });
 
     // Check if userId is set for update or new user creation
@@ -107,6 +109,7 @@ $('#submit_form').on('submit', function (e) {
         console.log('Form data submitted successfully:', response);
         $('#submit_form')[0].reset(); // Reset the form
         getDataById(); // Refresh the user data table
+        $("#userId").val('')
     });
 
     // Error callback
