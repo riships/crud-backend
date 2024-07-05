@@ -1,19 +1,17 @@
 const express = require('express');
 const app = express();
 
+app.use(express.json());
 
-app.get('/number/:number', (req,res)=>{
-    let num1 = parseInt(req.params.number)
-    if (num1 == 10) {
-        res.status(200).json({ "number": 10, "even": true })
-    } else if (num1 == 11){
-        res.status(400).json({ "number": 11, "odd": true })
-    } else if (num1 == 0) {
-        res.status(404).json({ "number": 11, "even": false, "odd":false })
-    }
+const numMiddleware = (req, res, next) => {
+    console.log(req.body);
+    next(); 
+};
+
+app.post('/number', numMiddleware, (req, res) => {
+    res.json(req.body); 
 });
 
-
-app.listen(3000,() => {
+app.listen(3000, () => {
     console.log(`Server running on port http://localhost:3000/number`);
-})
+});
